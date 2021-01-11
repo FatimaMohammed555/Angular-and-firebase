@@ -1,0 +1,30 @@
+
+<div class="allProducts">
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-3">
+      <div class="sticky-top">
+      <a [class.active]="!category" routerLink="/" class="list-group-item list-group-item-action">All Categories</a>
+
+      <div class="list-group" *ngFor="let cat of categories$ | async">
+          <a [class.active]="category === cat.name" [queryParams]="{category : cat.name}" routerLink="/" class="list-group-item list-group-item-action">{{cat.name}}</a>
+      </div>
+    </div>
+  </div>
+    <div class="col-12 col-sm-9">
+      <div class class="row">
+          <ng-container *ngFor="let products of filterdProducts; let i=index">
+            <div class="col">
+            <app-product-card [product]='products' [shoppingCart]='cart'></app-product-card>
+          </div>
+          <div *ngIf="(i + 1) % 2 == 0" class="w-100"></div>
+          </ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+

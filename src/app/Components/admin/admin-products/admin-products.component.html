@@ -1,0 +1,31 @@
+
+
+<p class="adminProducts">
+
+    <a class="btn btn-primary" routerLink="/admin/addProducts"   role="button">Add Product</a>
+
+</p>
+
+<input #query (keyup)="filter(query.value)" placeholder="Searching..." type="text" class="form-control"><br/>
+
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of filterdProducts">
+      <td>{{prod.payload.val().title}}</td>
+      <td>{{prod.payload.val().price | currency:'USD':true }}</td>
+      <td>
+        <a class="btn btn-primary" [routerLink]="['/admin/addProducts' , prod.key]">Edit</a>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+

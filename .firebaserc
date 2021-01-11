@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "shoppingstore-c8a6f"
+  },
+  "targets": {
+    "shoppingstore-c8a6f": {
+      "hosting": {
+        "shopping": [
+          "shoppingstore-c8a6f"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+
+<div class="myShopping">
+  <h1>Shopping Cart Items</h1>
+  <ng-container *ngIf="cart$ | async as cart">
+        <label>You have <strong> {{ cart.getTotalCounter }} </strong> items in your shopping cart.</label>
+
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>PricePerItem</th>
+
+              </tr>
+          </thead>
+          <tbody *ngIf="cart.getTotalCounter > 0">
+              <tr *ngFor="let producId of cart.productIds">
+                  <ng-container *ngIf="cart.items[producId].quantity > 0">
+                    <td> {{ cart.items[producId].product.title }} </td>
+                    <td> {{ cart.items[producId].quantity }} </td>
+                    <td> {{ cart.items[producId].product.price }} </td>
+                    <td> {{ (cart.items[producId].product.price * cart.items[producId].quantity) | currency:'USD' }} </td>
+                  </ng-container>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th class="text-right"> TotalPrice : &nbsp;{{ cart.totalPrice | currency:'USD' }} </th>
+              </tr>
+          </tfoot>
+      </table>
+      <a *ngIf="cart.getTotalCounter > 0" routerLink="/check-out" class="btn btn-primary">Check Out</a>
+
+  </ng-container>
+</div>
